@@ -16,6 +16,7 @@ public class Graph : MonoBehaviour {
             position.x = (i + 0.5f) * step - 1f;
             point.localPosition = position;
             point.localScale = scale;
+            point.SetParent(transform, false);
         }
     }
 }
