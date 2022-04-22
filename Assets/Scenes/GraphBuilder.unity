@@ -348,6 +348,8 @@ MonoBehaviour:
   pointPrefab: {fileID: 3286406411422914933, guid: 199e9835ccd3d4d44bbcbd0e35d22be2, type: 3}
   resolution: 100
   function: 4
+  transitionMode: 1
+  functionDuration: 1
   points: []
 --- !u!4 &1124776847
 Transform:
@@ -517,6 +519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 1132257980}
+  displayMode: 0
+  sampleDuration: 1
 --- !u!1 &1335917090
 GameObject:
   m_ObjectHideFlags: 0

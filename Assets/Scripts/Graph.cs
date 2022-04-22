@@ -10,8 +10,18 @@ public class Graph : MonoBehaviour {
     [SerializeField]
     FunctionLibrary.FunctionName function;
 
+    public enum TransitionMode { Cycle, Random }
+
+    [SerializeField]
+    TransitionMode transitionMode;
+
+    [SerializeField, Min(0f)]
+    float functionDuration = 1f;
+
     [SerializeField]
     Transform[] points;
+
+    float duration;
 
     void Awake() {
         float step = 2f / resolution;
@@ -24,7 +34,22 @@ public class Graph : MonoBehaviour {
         }
     }
 
-    private void Update() {
+    void Update() {
+        duration += Time.deltaTime;
+        if (duration >= functionDuration) {
+            duration -= functionDuration;
+            PickFunction();
+        }
+        UpdateFunction();    
+    }
+       
+    void PickFunction() {
+        function = transitionMode == TransitionMode.Cycle ?
+            FunctionLibrary.GetNextFunctionName(function) :
+            FunctionLibrary.GetRandomFunctionNameOtherThan(function);
+    }
+
+    void UpdateFunction() {
         FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
         var time = Time.time;
         var step = 2f / resolution;
